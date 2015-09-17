@@ -19,29 +19,17 @@ angular.module('myApp.view1', ['ngRoute'])
       'background-repeat': 'repeat'
     };
 
-
     function make_my_gif() {
-      var sz = 5;
-      var mypixels = Array(sz * sz);
-      var k, l, j;
-      var ly;
-      for (k = 0; k < sz; k++) {
-        var x = k * 2 * Math.PI / sz;
-        var y = Math.round((Math.sin(x) + 1) * (sz - 3) / 2);
-        if (k == 0) ly = y;
-        if (ly > y) {
-          for (j = ly - 1; j > y; j--) {
-            mypixels[k + sz * j] = 1;
-          }
-        } else {
-          for (j = ly + 1; j < y; j++) {
-            mypixels[k + sz * j] = 1;
-          }
-        }
-        mypixels[k + sz * y] = 1;
-        ly = y;
-      }
-      return make_glif(sz, sz, mypixels, 255);
+      var width = 2;
+      var height = 2;
+      var mypixels = Array(height * width);
+
+      mypixels[0] = 1;
+      mypixels[1] = 0;
+      mypixels[2] = 0;
+      mypixels[3] = 0;
+
+      return make_glif(width, height, mypixels, 128, 128, 128);
     }
   }
 ]);
