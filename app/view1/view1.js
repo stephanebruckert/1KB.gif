@@ -4,7 +4,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .config(['$routeProvider',
   function($routeProvider) {
-    $routeProvider.when('/view1', {
+    $routeProvider.when('/', {
       templateUrl: 'view1/view1.html',
       controller: 'View1Ctrl'
     });
@@ -13,23 +13,41 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$scope',
   function($scope) {
-    var my_gif = make_my_gif();
-    $scope.background = {
-      'background-image': 'url(' + my_gif + ')',
-      'background-repeat': 'repeat'
-    };
+    $scope.px0 = "";
+    $scope.px1 = "";
+    $scope.px2 = "";
+    $scope.px3 = "";
 
-    function make_my_gif() {
-      var width = 2;
-      var height = 2;
-      var mypixels = Array(height * width);
+    $scope.make_png = function() {
+      var px0 = tinycolor($scope.px0);
+      var px1 = tinycolor($scope.px1);
+      var px2 = tinycolor($scope.px2);
+      var px3 = tinycolor($scope.px3);
 
-      mypixels[0] = 1;
-      mypixels[1] = 0;
-      mypixels[2] = 0;
-      mypixels[3] = 0;
+      var p = new PNGlib(2, 2, 256); // construcor takes height, weight and color-depth
+      p.color(0, 0, 0, 0); // set the background transparent
+      p.buffer[p.index(0, 0)] = p.color(px0.toRgb().r, px0.toRgb().g, px0.toRgb().b);
+      p.buffer[p.index(0, 1)] = p.color(px1.toRgb().r, px1.toRgb().g, px1.toRgb().b);
+      p.buffer[p.index(1, 0)] = p.color(px2.toRgb().r, px2.toRgb().g, px2.toRgb().b);
+      p.buffer[p.index(1, 1)] = p.color(px3.toRgb().r, px3.toRgb().g, px3.toRgb().b);
 
-      return make_glif(width, height, mypixels, 128, 128, 128);
+      $scope.background = {
+        'background-image': 'url(data:image/png;base64,' + p.getBase64() + ')'
+      };
+      $scope.bgpx0 = {
+        'background-color': $scope.px0
+      };
+      $scope.bgpx1 = {
+        'background-color': $scope.px1
+      };
+      $scope.bgpx2 = {
+        'background-color': $scope.px2
+      };
+      $scope.bgpx3 = {
+        'background-color': $scope.px3
+      };
+
     }
+
   }
 ]);

@@ -1,2 +1,36 @@
-<div class="full" ng-style="background"></div>
-
+<div class="background full" ng-style="background">
+	<div class="container">
+		<div class="block">
+			<div id="grid">
+				<div class="square">
+					<div class="content">
+				        <div class="table">
+			                <div colorpicker="rgb" class="table-cell" ng-style="bgpx0" ng-change="make_png()" ng-model="px0">{{ px0 }}</div>
+				        </div>
+				    </div>
+				</div>
+				<div class="square">
+					<div class="content">
+				        <div class="table">
+			                <div colorpicker="rgb" class="table-cell" ng-style="bgpx1" ng-change="make_png()" ng-model="px1">{{ px1 }}</div>
+				        </div>
+				    </div>
+				</div>
+				<div class="square">
+					<div class="content">
+				        <div class="table">
+			                <div colorpicker="rgb" class="table-cell" ng-style="bgpx2" ng-change="make_png()" ng-model="px2">{{ px2 }}</div>
+				        </div>
+				    </div>
+				</div>
+				<div class="square">
+					<div class="content">
+				        <div class="table">
+			             	<div colorpicker="rgb" class="table-cell" ng-style="bgpx3" ng-change="make_png()" ng-model="px3">{{ px3 }}</div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
